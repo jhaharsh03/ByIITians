@@ -1,0 +1,16 @@
+{
+  "title": "Timely Academic Evaluation",
+  "text": "Receive timely updates on your child's school performance with our regular check-ins. The progress report reflects how your child is doing in class, pointing out specific areas for improvement. As teachers focus on those areas, you'll see your child's progress go up.",
+  "section": [
+    {
+      "title": "How it helps?",
+      "content": "Tailored evaluations drive student progress by revealing insights, strengths, and growth areas for continuous improvement.",
+      "icon": "notes.svg"
+    },
+    {
+      "title": "Why is it needed?",
+      "content": "It serves as a valuable roadmap for continuous improvement, enhancing the overall learning experience.",
+      "icon": "notes.svg" 
+    }
+  ]
+}
