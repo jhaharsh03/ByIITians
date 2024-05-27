@@ -18,27 +18,27 @@ const Testimonial = ({ title}: MiddleBlockProps) => {
               <ContentWrapper>
             <Col lg={24} md={24} sm={24} xs={24}>
                 <h6>{(title)}</h6>
-                <CarouselContainer autoplay autoplaySpeed={2000} slidesToShow={1} className="custom-carousel">
+                <CarouselContainer autoplay autoplaySpeed={2000} slidesToShow={2} className="custom-carousel">
                 <CarouselItem>
                   <TestimonialCard
-                  name="Jane Smith"
-                  className="Class 12"
-                  message="The teachers are great and the environment is very supportive."
+                  name="Kavya"
+                  className="A2 Physics"
+                  message="I used to struggle in Physics a lot but when I joined BI, they made it the easiest and most interesting subject for me. Special thanks to Mr Harshit who was my personal mentor during my journey"
                   imageUrl="/img/testimonials/1.jpg"/>
                   </CarouselItem>
                 <CarouselItem>
                   <TestimonialCard
-                  name="Jane Smith"
-                  className="Class 12"
-                  message="The teachers are great and the environment is very supportive."
+                  name="Sehyaan"
+                  className="Class 8 CBSE"
+                  message="The teachers are great and they make sure that your concept is crystal clear. I have been taking classes at BI from the past 5 months and the teachers I got here are far better than any teacher I ever got."
                   imageUrl="/img/testimonials/2.jpg"/>
                   </CarouselItem>
                 <CarouselItem>
                   <TestimonialCard
-                  name="Jane Smith"
-                  className="Class 12"
-                  message="The teachers are great and the environment is very supportive."
-                  imageUrl="https://via.placeholder.com/150"/>
+                  name="Imogen"
+                  className="British Curriculum"
+                  message="At first, I only took Maths at BI, but I was blown away by how great the teachers were. They inspired me to dive into other science subjects. Their guidance surpassed any online resources, truly helping me excel academically."
+                  imageUrl="/img/testimonials/3.png"/>
                   </CarouselItem>
                 </CarouselContainer>
                

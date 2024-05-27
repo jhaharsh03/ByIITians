@@ -2,50 +2,60 @@ import styled from "styled-components";
 import { Carousel } from "antd";
 
 export const MiddleBlockSection = styled.section`
-
-position: relative;
-  padding: 7.5rem 0 3rem;
+  padding-top: 20px;
+  position: relative;
   text-align: center;
-  display: flex;
-  justify-content: center;
+  padding-bottom: 3rem; /* Add bottom padding */
 
-  @media screen and (max-width: 1024px) {
-    padding: 5.5rem 0 3rem;
+  @media screen and (max-width: 768px) {
+    padding-bottom: 2rem; /* Increase bottom padding for smaller screens */
+    
   }
 `;
-
 export const ContentWrapper = styled.div`
+  max-width: 900px;
+  width: 100%; /* Ensure ContentWrapper fills the available width */
+  display: flex;
+  flex-direction: column; /* Adjust for vertical layout */
+  align-items: center; /* Center items horizontally */
+  gap: 2rem; /* Add gap between items */
 
-max-width: 570px;
-
-  @media only screen and (max-width: 768px) {
-    max-width: 100%;
+  @media only screen and (max-width: 950px) {
+    padding: 0 1rem; /* Adjust padding for responsiveness */
   }
-
 `;
 
 
 
-export const Paragraph = styled.p`
-  margin: 0; /* Adjust top margin for spacing */
-  flex: 1;
-  text-align: center; /* Center paragraph text */
-`;
+
+// export const CarouselContainer = styled(Carousel)`
+// .slick-slide {
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+// }
+
+// width: 100%;
+// `;
 
 
 export const CarouselContainer = styled(Carousel)`
-.slick-slide {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-width: 100%;
+  flex: 1;
 `;
+
+// export const CarouselItem = styled.div`
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   flex-direction: column;
+// `;
+
 
 export const CarouselItem = styled.div`
   display: flex;
-  justify-content: center;
-  align-items: center;
+  flex: 1;
   flex-direction: column;
+  align-items: center; /* Center items vertically */
+  justify-content: space-between;
+  margin-bottom: 0; /* Add margin between carousel items */
 `;
