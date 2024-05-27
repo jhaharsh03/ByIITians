@@ -56,7 +56,7 @@ const Footer = ({ t }: { t: TFunction }) => {
               <Para>
                 {t(`Do you have any question? Feel free to reach out.`)}
               </Para>
-              <a href="https://api.whatsapp.com/send/?phone=%2B917879893307&text&type=phone_number&app_absent=0">
+              <a href="tel:+91 7879893307">
                 <Chat>{t(`+91 7879893307`)}</Chat>
               </a>
             </Col>
@@ -130,19 +130,19 @@ const Footer = ({ t }: { t: TFunction }) => {
             <FooterContainer>
               <SocialLink
                 href="https://api.whatsapp.com/send/?phone=%2B917879893307&text&type=phone_number&app_absent=0"
-                src="github.svg"
+                src="whatsapp.svg"
               />
               <SocialLink
-                href="https://twitter.com/Educators__"
+                href="https://x.com/by__iitians"
                 src="twitter.svg"
               />
               <SocialLink
-                href="https://www.youtube.com/@EducatorsOnline/featured"
-                src="linkedin.svg"
+                href="https://youtube.com/@by_iitians?si=AcpLovTU5zVTbQ5R"
+                src="youtube.svg"
               />
               <SocialLink
-                href="https://www.instagram.com/educators___online/"
-                src="medium.svg"
+                href="https://www.instagram.com/by_iitians/"
+                src="instagram.svg"
               />
             </FooterContainer>
           </Row>
