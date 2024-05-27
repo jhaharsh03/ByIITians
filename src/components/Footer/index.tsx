@@ -15,10 +15,10 @@ import {
   Chat,
   Empty,
   FooterContainer,
-  Language,
-  Label,
-  LanguageSwitch,
-  LanguageSwitchContainer,
+  Language, 
+  // Label,
+  // LanguageSwitch,
+  // LanguageSwitchContainer,
 } from "./styles";
 
 interface SocialLinkProps {
@@ -52,12 +52,12 @@ const Footer = ({ t }: { t: TFunction }) => {
           <Row justify="space-between">
             <Col lg={10} md={10} sm={12} xs={12}>
               <Language>{t("Contact")}</Language>
-              <Large to="/">{t("Tell us everything")}</Large>
+              <Large to="/">{t("Reach Out to Us")}</Large>
               <Para>
                 {t(`Do you have any question? Feel free to reach out.`)}
               </Para>
               <a href="https://api.whatsapp.com/send/?phone=%2B917879893307&text&type=phone_number&app_absent=0">
-                <Chat>{t(`Let's Chat`)}</Chat>
+                <Chat>{t(`+91 7879893307`)}</Chat>
               </a>
             </Col>
             <Col lg={8} md={8} sm={12} xs={12}>
@@ -75,9 +75,9 @@ const Footer = ({ t }: { t: TFunction }) => {
             <Col lg={10} md={10} sm={12} xs={12}>
               <Empty />
               <Language>{t("Address")}</Language>
-              <Para>Rancho Santa Margarita</Para>
-              <Para>2131 Elk Street</Para>
-              <Para>California</Para>
+              <Para>IIT Indore Campus</Para>
+              <Para>Khandwa Road, Simrol</Para>
+              <Para>India</Para>
             </Col>
             <Col lg={8} md={8} sm={12} xs={12}>
               <Title>{t("Company")}</Title>
@@ -87,9 +87,9 @@ const Footer = ({ t }: { t: TFunction }) => {
               <Large to="/">{t("Careers & Culture")}</Large>
             </Col>
             <Col lg={6} md={6} sm={12} xs={12}>
-              {/* <Label htmlFor="select-lang">{t("Language")}</Label> */}
+              {/* <Label htmlFor="select-lang">{t("Language")}</Label>
               <Label htmlFor="select-lang">Articles will be added soon</Label>
-              {/* <LanguageSwitchContainer>
+              <LanguageSwitchContainer>
                 <LanguageSwitch onClick={() => handleChange("en")}>
                   <SvgIcon
                     src="united-states.svg"
@@ -145,18 +145,6 @@ const Footer = ({ t }: { t: TFunction }) => {
                 href="https://www.instagram.com/educators___online/"
                 src="medium.svg"
               />
-              {/* <a
-                href="https://ko-fi.com/Y8Y7H8BNJ"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <img
-                  height="36"
-                  style={{ border: 0, height: 36 }}
-                  src="https://storage.ko-fi.com/cdn/kofi3.png?v=3"
-                  alt="Buy Me a Coffee at ko-fi.com"
-                />
-              </a> */}
             </FooterContainer>
           </Row>
         </Container>

@@ -8,16 +8,13 @@ import { InputProps } from "../types";
 const Input = forwardRef<HTMLInputElement, InputProps>(({ name, placeholder, t }, ref) => (
   <Container>
     <Label htmlFor={name}>{t(name)}</Label>
-    {/* Forwarding the ref to the input element */}
     <StyledInput
       placeholder={t(placeholder)}
       name={name}
       id={name}
-      // onChange={onChange}
-      ref={ref} // Ref assigned to the input element
+      ref={ref} 
     />
   </Container>
 ));
 
 export default withTranslation()(Input);
-// export default Input;

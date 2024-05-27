@@ -12,8 +12,7 @@ const TextArea = forwardRef<HTMLTextAreaElement, InputProps>(({ name, placeholde
       placeholder={t(placeholder)}
       id={name}
       name={name}
-      // onChange={onChange}
-      ref={ref} // Ref assigned to the textarea element
+      ref={ref}
     />
   </StyledContainer>
 ));

@@ -26,3 +26,6 @@ export const StyledContainer = styled("div")<{
     padding: 0 18px;
   }
 `;
+
+
+// The StyledContainer component is a responsive container with a maximum width of 1200px and centered horizontally within its parent. It has customizable padding that adjusts based on the screen width to ensure good spacing and layout on different devices. An optional top border can be applied based on the border prop. The media queries ensure that the container adapts its size and padding for various screen sizes, maintaining a consistent and responsive design.

@@ -41,3 +41,7 @@ const ScrollToTop = () => {
 };
 
 export default ScrollToTop;
+
+
+
+// The ScrollToTop component provides a button that appears when the user scrolls more than 350 pixels down the page. When clicked, it smoothly scrolls the user back to the top (or a specific section with the ID intro).

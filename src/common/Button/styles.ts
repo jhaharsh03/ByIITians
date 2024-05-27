@@ -23,3 +23,7 @@ export const StyledButton = styled("button")<{ color?: string }>`
     background-color: rgb(255, 130, 92);
   }
 `;
+
+
+// ### Summary
+// The `StyledButton` component is a customizable button with a default dark purple background and white text. If a color prop is provided, the button adapts accordingly. It has a modern design with rounded corners, a box shadow, and smooth transitions for hover, active, and focus states. The button is also responsive with a full-width design that adapts to its container but does not exceed a max-width of `180px`.

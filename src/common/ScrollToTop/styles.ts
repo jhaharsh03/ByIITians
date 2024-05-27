@@ -28,3 +28,12 @@ export const ScrollUpContainer = styled("div")<{
     display: none;
   }
 `;
+
+
+
+// ScrollUpContainer: A styled div that appears as a fixed-position button typically used for scrolling up to the top of a page.
+// Conditional Visibility: Uses the show prop to control visibility and opacity, making it fade in and out smoothly.
+// Positioning: Fixed at the bottom-right corner of the viewport with padding and a rounded background.
+// Hover Effect: Changes background color on hover, active, and focus states to indicate interactivity.
+// Responsiveness: Hidden on screens smaller than 1240 pixels wide to maintain a clean UI on smaller devices.
+// This component is useful for creating a "scroll to top" button that appears only when needed and remains fixed at a convenient location on the page.
