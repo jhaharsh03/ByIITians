@@ -108,11 +108,17 @@ export const FooterContainer = styled("div")`
 
   @media screen and (max-width: 769px) {
     width: auto;
-
-    a:not(:last-child) {
-      display: none;
+  
+    a {
+      display: inline-block; /* Ensure all icons are displayed */
+      margin-right: 30px; /* Add some space between icons */
+    }
+  
+    a:last-child {
+      margin-right: 0; /* Remove margin from the last icon */
     }
   }
+  
 
   div {
     cursor: pointer;
