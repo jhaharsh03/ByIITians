@@ -40,6 +40,11 @@ const Contact = ({ title, content, id, t }: ContactProps) => {
       const email = emailRef.current.value;
       const phone = phoneRef.current.value;
 
+      if (!name || !email || !phone) {
+        handleOpenModal("Error", "Please fill out all required fields.");
+        return;
+      }
+
       const formData = new FormData();
       formData.append('Name', name);
       formData.append('Email', email)
