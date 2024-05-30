@@ -1,40 +1,29 @@
-import { useState } from "react"; // Add useState hook
 import { Row, Col } from "antd";
 import { withTranslation } from "react-i18next";
-import { Slide, Zoom } from "react-awesome-reveal";
-import { ContactProps, ValidationTypeProps } from "./types";
-import { useForm } from "../../common/utils/useForm";
-import validate from "../../common/utils/validationRules";
+import { Slide } from "react-awesome-reveal";
+import { ContactProps } from "./types";
 import { Button } from "../../common/Button";
 import Block from "../Block";
-import Input from "../../common/Input";
-import TextArea from "../../common/TextArea";
-import { ContactContainer, FormGroup, Span, ButtonContainer, PopupContainer, CloseButton } from "./styles";
+import { ContactContainer, FormGroup, ButtonContainer } from "./styles";
 import { useRef } from "react";
 import {StyledInput} from '../../common/Input/styles'
 import {Label} from '../../common/TextArea/styles'
 import {Container} from '../../common/Input/styles'
-import ModalFromMantine from '../../common/Modal/index';
-import { MantineProvider } from '@mantine/core';
+
+import { useModal } from "../Modal/ModalContext";
 
 const Contact = ({ title, content, id, t }: ContactProps) => {
-  const { values, errors, handleChange, handleSubmit } = useForm(validate);
-  const [showPopup, setShowPopup] = useState(false);
 
-  const ValidationType = ({ type }: ValidationTypeProps) => {
-    const ErrorMessage = errors[type as keyof typeof errors];
-    return (
-      <Zoom direction="left">
-        <Span>{ErrorMessage}</Span>
-      </Zoom>
-    );
+  const { showModal } = useModal();
+
+  const handleOpenModal = (modalTitle: string, modalMessage: string) => {
+    showModal(modalTitle, <div>{modalMessage}</div>);
   };
 
 
 
   const emailRef = useRef<HTMLInputElement>(null);
   const nameRef = useRef<HTMLInputElement>(null);
-  // const phoneRef = useRef<HTMLTextAreaElement>(null);
   const phoneRef = useRef<HTMLInputElement>(null);
 
 
@@ -84,24 +73,25 @@ const Contact = ({ title, content, id, t }: ContactProps) => {
         emailRef.current.value = "";
         phoneRef.current.value = "";
 
-        
+        handleOpenModal("Success", "Your form has been successfully submitted!");
     
         // Handle success, if needed
       } catch (error) {
         // Handle error
+        handleOpenModal("Error", "There was an error submitting your form. Please try again later.");
         console.error("Error submitting form:", error);
       } 
     }
 
     else{
-      console.log("You are in the else statement")
+      // handleOpenModal("Error", "Please fill out all required fields.");
+      // console.log("You are in the else statement")
     }
 };
 
 
 
   return (
-    // <MantineProvider> {/* Wrap your component tree with MantineProvider */}
     <ContactContainer id={id}>
       <Row justify="space-between" align="middle">
         <Col lg={12} md={11} sm={24} xs={24}>
@@ -118,11 +108,10 @@ const Contact = ({ title, content, id, t }: ContactProps) => {
                   type="text"
                   name="Name"
                   placeholder="Your Name"
-                  // value={values.name || ""}
+
                   ref = {nameRef}
                   
                 />
-                {/* <ValidationType type="name" /> */}
               </Col>
               <Col span={24}>
               <Container>
@@ -134,7 +123,6 @@ const Contact = ({ title, content, id, t }: ContactProps) => {
                   ref={emailRef}
                 />
                 </Container>
-                {/* <ValidationType type="email" /> */}
               </Col>
               <Col span={24}>
               <Container>
@@ -145,32 +133,15 @@ const Contact = ({ title, content, id, t }: ContactProps) => {
                   ref = {phoneRef}
                 />
                 </Container>
-                {/* <ValidationType type="message" /> */}
               </Col>
               <ButtonContainer>
                 <Button name="submit">{t("Submit")}</Button>
               </ButtonContainer>
-
-              {/* <ModalFromMantine/> */}
             </FormGroup>
           </Slide>
         </Col>
       </Row>
-
-       {/* Popup Modal */}
-       {showPopup && (
-        <PopupContainer>
-          <div>
-            <h2>Congratulations!</h2>
-            <p>Your form has been submitted successfully. We will contact you soon.</p>
-            <CloseButton onClick={() => setShowPopup(false)}>Close</CloseButton>
-          </div>
-        </PopupContainer>
-      )}
-
-
     </ContactContainer>
-    // </MantineProvider>
   );
 };
 

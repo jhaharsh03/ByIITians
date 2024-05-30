@@ -1,0 +1,33 @@
+/* ModalStyles.css */
+
+.custom-modal .ant-modal-content {
+    border-radius: 10px;
+    padding: 20px;
+    background-color: #f0f2f5; /* Light grey background */
+  }
+  
+  .custom-modal .ant-modal-header {
+    background-color: #1890ff; /* Primary color for header */
+    color: #fff;
+    border-bottom: none;
+    border-radius: 10px 10px 0 0;
+  }
+  
+  .custom-modal .ant-modal-title {
+    color: #fff;
+  }
+  
+  .custom-modal .ant-modal-close-x {
+    color: #fff;
+  }
+  
+  .custom-modal .ant-modal-body {
+    padding: 20px;
+  }
+  
+  .custom-modal .ant-modal-footer {
+    border-top: none;
+    background-color: #f0f2f5; /* Same as content background */
+    border-radius: 0 0 10px 10px;
+  }
+  

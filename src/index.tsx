@@ -5,11 +5,14 @@ import "antd/dist/antd.css";
 
 import Router from "./router";
 import i18n from "./translation";
+import { ModalProvider } from "./components/Modal/ModalContext";
 
 const App = () => (
   <BrowserRouter>
     <I18nextProvider i18n={i18n}>
+    <ModalProvider>
       <Router />
+      </ModalProvider>
     </I18nextProvider>
   </BrowserRouter>
 );
