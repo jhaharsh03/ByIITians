@@ -48,8 +48,13 @@ const Contact = ({ title, content, id, t }: ContactProps) => {
 
       const newErrors = { name: '', email: '', phone: '' };
       if (!name) newErrors.name = "Name is required.";
-      if (!email || !validateEmail(email)) newErrors.email = "Invalid email address.";
-      if (!phone || !validatePhone(phone)) newErrors.phone = "Invalid phone number.";
+      if (!validateEmail(email)) newErrors.email = "Invalid email address.";
+      if (!validatePhone(phone)) newErrors.phone = "Invalid phone number.";
+
+      if (!email) newErrors.email = "Email is required.";
+      if (!phone) newErrors.phone = "Phone is required.";
+
+      
 
       if (newErrors.name || newErrors.email || newErrors.phone) {
         setErrors(newErrors);
@@ -137,7 +142,7 @@ const Contact = ({ title, content, id, t }: ContactProps) => {
                   <Container>
                     <Label>Contact Number</Label>
                     <StyledInput
-                      placeholder="Your Contact Number"
+                      placeholder="Enter 10 Digit Contact Number"
                       name="Phone"
                       ref={phoneRef}
                     />
