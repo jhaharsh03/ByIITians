@@ -103,7 +103,6 @@ const Contact = ({ title, content, id, t }: ContactProps) => {
 
   return (
     <ContactContainer id={id}>
-      <Spin spinning={loading}>
       <Row justify="space-between" align="middle">
         <Col lg={12} md={11} sm={24} xs={24}>
           <Slide direction="left" triggerOnce>
@@ -112,6 +111,7 @@ const Contact = ({ title, content, id, t }: ContactProps) => {
         </Col>
         <Col lg={12} md={12} sm={24} xs={24}>
           <Slide direction="right" triggerOnce>
+          <Spin spinning={loading}>
             <FormGroup autoComplete="off" onSubmit={handleFormSubmit}>
               <Col span={24}>
                 <Label>Name</Label>
@@ -149,10 +149,10 @@ const Contact = ({ title, content, id, t }: ContactProps) => {
                 <Button name="submit">{t("Submit")}</Button>
               </ButtonContainer>
             </FormGroup>
+            </Spin>
           </Slide>
         </Col>
       </Row>
-      </Spin>
     </ContactContainer>
   );
 };
