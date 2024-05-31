@@ -12,6 +12,7 @@ import {
   LogoContainer,
   Para,
   Large,
+  AnchorLarge,
   Chat,
   Empty,
   FooterContainer,
@@ -67,8 +68,9 @@ const Footer = ({ t }: { t: TFunction }) => {
             </Col>
             <Col lg={6} md={6} sm={12} xs={12}>
             <Title>{t("Help")}</Title>
-              <Large to="/">{t("Drop your Query")}</Large>
-              <Large to="/">{t("Contact Directly")}</Large>
+              <AnchorLarge href="mailto:byiitianscontact@gmail.com">{t("Drop your Query")}</AnchorLarge>
+
+              <AnchorLarge href="https://api.whatsapp.com/send/?phone=%2B917879893307&text&type=phone_number&app_absent=0" target="_blank" rel="noopener noreferrer">{t("Contact Directly")}</AnchorLarge>
             </Col>
           </Row>
           <Row justify="space-between">
