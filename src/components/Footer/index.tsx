@@ -85,7 +85,7 @@ const Footer = ({ t }: { t: TFunction }) => {
               <Title>{t("Company")}</Title>
               <Large to="/">{t("About")}</Large>
               <Large to="/">{t("Blog (Coming Soon)")}</Large>
-              <Large to="/">{t("Careers")}</Large>
+              <AnchorLarge href="https://forms.gle/VSMWbm8Qu9dVEjeK8" target="_blank" rel="noopener noreferrer">{t("Careers")}</AnchorLarge>
             </Col>
             <Col lg={6} md={6} sm={12} xs={12}>
               {/* <Label htmlFor="select-lang">{t("Language")}</Label>
