@@ -1,11 +1,11 @@
-import { Row, Col } from "antd";
+import { Row, Col, Spin } from "antd";
 import { withTranslation } from "react-i18next";
 import { Slide } from "react-awesome-reveal";
 import { ContactProps } from "./types";
 import { Button } from "../../common/Button";
 import Block from "../Block";
 import { ContactContainer, FormGroup, ButtonContainer } from "./styles";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import {StyledInput} from '../../common/Input/styles'
 import {Label} from '../../common/TextArea/styles'
 import {Container} from '../../common/Input/styles'
@@ -15,9 +15,12 @@ import { useModal } from "../Modal/ModalContext";
 const Contact = ({ title, content, id, t }: ContactProps) => {
 
   const { showModal } = useModal();
+  const [loading, setLoading] = useState(false);
 
   const handleOpenModal = (modalTitle: string, modalMessage: string) => {
+    setLoading(false);
     showModal(modalTitle, <div>{modalMessage}</div>);
+    
   };
 
 
@@ -29,6 +32,7 @@ const Contact = ({ title, content, id, t }: ContactProps) => {
 
   const handleFormSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
+    setLoading(true);
 
     if(
       emailRef.current &&
@@ -91,6 +95,7 @@ const Contact = ({ title, content, id, t }: ContactProps) => {
     else{
       // handleOpenModal("Error", "Please fill out all required fields.");
       // console.log("You are in the else statement")
+      setLoading(false);
     }
 };
 
@@ -98,6 +103,7 @@ const Contact = ({ title, content, id, t }: ContactProps) => {
 
   return (
     <ContactContainer id={id}>
+      <Spin spinning={loading}>
       <Row justify="space-between" align="middle">
         <Col lg={12} md={11} sm={24} xs={24}>
           <Slide direction="left" triggerOnce>
@@ -146,6 +152,7 @@ const Contact = ({ title, content, id, t }: ContactProps) => {
           </Slide>
         </Col>
       </Row>
+      </Spin>
     </ContactContainer>
   );
 };
