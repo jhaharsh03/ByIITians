@@ -1,0 +1,50 @@
+.containerClass {
+  display: inline-block;
+  width: 100%;
+  padding: 10px 5px;
+  background: rgb(241, 242, 243);
+  border-radius: 4px;
+}
+
+.containerClass input.form-control {
+  left: 20px;
+  display: flex;
+  align-items: center;
+  background: rgb(241, 242, 243);
+  width: calc(100% - 40px);  /* Adjusted width to leave space for the dropdown */
+  padding: 1rem 1.25rem;
+  margin: 0;
+  outline: none;
+  border: none;
+}
+
+.containerClass:focus-within {
+  background: none;
+  box-shadow: #2e186a 0px 0px 0px 1px;
+}
+
+.containerClass:focus-within input.form-control {
+  left: 20px;
+  border: none;
+  background: none;
+  outline: none;
+  margin: 0;
+  box-shadow: none;
+}
+
+.inputClass {
+  border: none;
+  outline: none;
+  flex-grow: 1;
+}
+
+.dropdownClass {
+  width: auto;
+  box-sizing: border-box;
+  margin-left: 10px; /* Add margin to separate dropdown from input field */
+}
+
+.react-tel-input .flag-dropdown {
+  left: 0px;
+ flex-grow:1;
+}

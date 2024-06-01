@@ -9,10 +9,28 @@ import { useRef, useState } from "react";
 import { StyledInput } from '../../common/Input/styles';
 import { Label } from '../../common/TextArea/styles';
 import { Container } from '../../common/Input/styles';
-
 import { useModal } from "../Modal/ModalContext";
+import PhoneInput from 'react-phone-input-2'
+import 'react-phone-input-2/lib/style.css'
+import styled from "styled-components";
+import './styles.css'
+
 
 const Contact = ({ title, content, id, t }: ContactProps) => {
+
+  const inputClass = styled.input`
+    border: 0;
+    background: red
+    transition: all 0.3s ease-in-out;  
+    outline: none;
+    width: 100%;  
+    padding: 1rem 1.25rem;
+
+    &:focus {
+        background: none;
+        box-shadow: #2e186a 0px 0px 0px 1px;
+    }
+`;
 
   const { showModal } = useModal();
   const [loading, setLoading] = useState(false);
@@ -148,6 +166,21 @@ const Contact = ({ title, content, id, t }: ContactProps) => {
                     />
                     {errors.phone && <div style={{ color: 'red' }}>{errors.phone}</div>}
                   </Container>
+                </Col>
+                <Col span={24}>
+                  {/* <Container> */}
+                    <Label>Contact Number</Label>
+                    <PhoneInput
+                      country={'us'}
+                      placeholder="Enter your contact number"
+                      containerClass="containerClass"
+                      inputClass="inputClass"
+                      dropdownClass="dropdownClass"
+                      
+                      
+                    />
+                    {errors.phone && <div style={{ color: 'red' }}>{errors.phone}</div>}
+                  {/* </Container> */}
                 </Col>
                 <ButtonContainer>
                   <Button name="submit">{t("Submit")}</Button>
