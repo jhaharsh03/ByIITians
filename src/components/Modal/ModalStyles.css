@@ -30,10 +30,3 @@
     background-color: #f0f2f5; /* Same as content background */
     border-radius: 0 0 10px 10px;
   }
-  
-  .ant-modal-centered .ant-modal {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh; /* Use full height of the viewport */
-  }
