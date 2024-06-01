@@ -55,6 +55,15 @@ const Testimonial = ({ title }: MiddleBlockProps) => {
                     imageUrl="/img/testimonials/3.png"
                   />
                 </CarouselItem>
+               
+                <CarouselItem>
+                  <TestimonialCard
+                    name="Max"
+                    className="IGCSE"
+                    message="Since starting classes at ByIITians, my understanding in maths and computer science have improved significantly. These subjects were always challenging for me. ByIITians has truly been a game changer, and I am incredibly grateful for their support."
+                    imageUrl="/img/testimonials/5.png"
+                  />
+                </CarouselItem>
               </CarouselContainer>
             </Col>
           </ContentWrapper>
