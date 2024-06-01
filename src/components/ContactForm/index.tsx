@@ -5,121 +5,95 @@ import { ContactProps } from "./types";
 import { Button } from "../../common/Button";
 import Block from "../Block";
 import { ContactContainer, FormGroup, ButtonContainer } from "./styles";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { StyledInput } from '../../common/Input/styles';
 import { Label } from '../../common/TextArea/styles';
 import { Container } from '../../common/Input/styles';
 import { useModal } from "../Modal/ModalContext";
-import PhoneInput from 'react-phone-input-2'
-import 'react-phone-input-2/lib/style.css'
-import styled from "styled-components";
-import './styles.css'
-
+import PhoneInput from 'react-phone-input-2';
+import 'react-phone-input-2/lib/style.css';
+import './styles.css';
 
 const Contact = ({ title, content, id, t }: ContactProps) => {
 
-  const inputClass = styled.input`
-    border: 0;
-    background: red
-    transition: all 0.3s ease-in-out;  
-    outline: none;
-    width: 100%;  
-    padding: 1rem 1.25rem;
-
-    &:focus {
-        background: none;
-        box-shadow: #2e186a 0px 0px 0px 1px;
-    }
-`;
 
   const { showModal } = useModal();
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState({ name: '', email: '', phone: '' });
+  const [formData, setFormData] = useState({ name: '', email: '', phone: '' });
 
   const handleOpenModal = (modalTitle: string, modalMessage: string) => {
     setLoading(false);
     showModal(modalTitle, <div>{modalMessage}</div>);
   };
 
-  const emailRef = useRef<HTMLInputElement>(null);
-  const nameRef = useRef<HTMLInputElement>(null);
-  const phoneRef = useRef<HTMLInputElement>(null);
-
   const validateEmail = (email: string) => {
     const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return re.test(String(email).toLowerCase());
-  };
-
-  const validatePhone = (phone: string) => {
-    const re = /^[0-9]{10}$/;
-    return re.test(String(phone));
   };
 
   const handleFormSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
     setLoading(true);
 
-    if (emailRef.current && nameRef.current && phoneRef.current) {
-      const name = nameRef.current.value;
-      const email = emailRef.current.value;
-      const phone = phoneRef.current.value;
+    const { name, email, phone } = formData;
 
-      const newErrors = { name: '', email: '', phone: '' };
-      if (!name) newErrors.name = "Name is required.";
-      if (!validateEmail(email)) newErrors.email = "Invalid email address.";
-      if (!validatePhone(phone)) newErrors.phone = "Invalid phone number.";
+    const newErrors = { name: '', email: '', phone: '' };
+    if (!name) newErrors.name = "Name is required.";
+    if (!validateEmail(email)) newErrors.email = "Invalid email address.";
 
-      if (!email) newErrors.email = "Email is required.";
-      if (!phone) newErrors.phone = "Phone is required.";
 
-      
+    if (!email) newErrors.email = "Email is required.";
+    if (!phone) newErrors.phone = "Phone is required.";
 
-      if (newErrors.name || newErrors.email || newErrors.phone) {
-        setErrors(newErrors);
-        setLoading(false);
-        return;
+    if (newErrors.name || newErrors.email || newErrors.phone) {
+      setErrors(newErrors);
+      setLoading(false);
+      return;
+    }
+
+    const formDataToSend = new FormData();
+    formDataToSend.append('Name', name);
+    formDataToSend.append('Email', email);
+    formDataToSend.append('Phone', phone);
+
+    const keyValuePairs: string[] = [];
+    for (const pair of formDataToSend.entries()) {
+      keyValuePairs.push(pair[0] + "=" + pair[1]);
+    }
+
+    const formDataString = keyValuePairs.join("&");
+
+    try {
+      const response = await fetch("https://script.google.com/macros/s/AKfycbyh-oryktyEjA0FS9azMLUbkNAncHCrkgDgfiCqT-I_PUIWy3oTO2NQljluXB3IBwgAXw/exec", {
+        redirect: "follow",
+        method: "POST",
+        body: formDataString,
+        headers: {
+          "Content-Type": "text/plain;charset=utf-8",
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to submit the form.");
       }
 
-      const formData = new FormData();
-      formData.append('Name', name);
-      formData.append('Email', email);
-      formData.append('Phone', phone);
+      // Clear form fields
+      setFormData({ name: '', email: '', phone: '' });
+      handleOpenModal("Thank You!", "Your response has been received. We will reach out to you within the next 24 hours.");
 
-      const keyValuePairs: string[] = [];
-      for (const pair of formData.entries()) {
-        keyValuePairs.push(pair[0] + "=" + pair[1]);
-      }
 
-      const formDataString = keyValuePairs.join("&");
-
-      try {
-        const response = await fetch("https://script.google.com/macros/s/AKfycbyh-oryktyEjA0FS9azMLUbkNAncHCrkgDgfiCqT-I_PUIWy3oTO2NQljluXB3IBwgAXw/exec", {
-          redirect: "follow",
-          method: "POST",
-          body: formDataString,
-          headers: {
-            "Content-Type": "text/plain;charset=utf-8",
-          },
-        });
-
-        if (!response.ok) {
-          throw new Error("Failed to submit the form.");
-        }
-
-        // Clear form fields
-        nameRef.current.value = "";
-        emailRef.current.value = "";
-        phoneRef.current.value = "";
-
-        handleOpenModal("Success", "Your form has been successfully submitted!");
-
-      } catch (error) {
-        handleOpenModal("Error", "There was an error submitting your form. Please try again later.");
-        console.error("Error submitting form:", error);
-      }
+    } catch (error) {
+      handleOpenModal("Error", "There was an error submitting your form. Please try again later.");
+      console.error("Error submitting form:", error);
     }
 
     setLoading(false);
+    setErrors(newErrors);
+  };
+
+  const handleInputChange = (field: string, value: string) => {
+    setFormData((prevData) => ({ ...prevData, [field]: value }));
   };
 
   return (
@@ -140,7 +114,8 @@ const Contact = ({ title, content, id, t }: ContactProps) => {
                     type="text"
                     name="Name"
                     placeholder="Your Name"
-                    ref={nameRef}
+                    value={formData.name}
+                    onChange={(e) => handleInputChange('name', e.target.value)}
                   />
                   {errors.name && <div style={{ color: 'red' }}>{errors.name}</div>}
                 </Col>
@@ -151,36 +126,24 @@ const Contact = ({ title, content, id, t }: ContactProps) => {
                       type="text"
                       name="Email"
                       placeholder="Your Email"
-                      ref={emailRef}
+                      value={formData.email}
+                      onChange={(e) => handleInputChange('email', e.target.value)}
                     />
                     {errors.email && <div style={{ color: 'red' }}>{errors.email}</div>}
                   </Container>
                 </Col>
                 <Col span={24}>
-                  <Container>
-                    <Label>Contact Number</Label>
-                    <StyledInput
-                      placeholder="Enter 10 Digit Contact Number"
-                      name="Phone"
-                      ref={phoneRef}
-                    />
-                    {errors.phone && <div style={{ color: 'red' }}>{errors.phone}</div>}
-                  </Container>
-                </Col>
-                <Col span={24}>
-                  {/* <Container> */}
-                    <Label>Contact Number</Label>
-                    <PhoneInput
-                      country={'us'}
-                      placeholder="Enter your contact number"
-                      containerClass="containerClass"
-                      inputClass="inputClass"
-                      dropdownClass="dropdownClass"
-                      
-                      
-                    />
-                    {errors.phone && <div style={{ color: 'red' }}>{errors.phone}</div>}
-                  {/* </Container> */}
+                  <Label>Contact Number</Label>
+                  <PhoneInput
+                    country={'ae'}
+                    placeholder="Enter your contact number"
+                    containerClass="containerClass"
+                    inputClass="inputClass"
+                    dropdownClass="dropdownClass"
+                    value={formData.phone}
+                    onChange={(value) => handleInputChange('phone', value)}
+                  />
+                  {errors.phone && <div style={{ color: 'red' }}>{errors.phone}</div>}
                 </Col>
                 <ButtonContainer>
                   <Button name="submit">{t("Submit")}</Button>

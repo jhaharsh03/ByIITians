@@ -45,6 +45,7 @@ export const ModalProvider: FC<ModalProviderProps> = ({ children }) => {
         visible={isModalVisible}
         onCancel={hideModal}
         footer={null}
+        className='custom-modal'
       >
         <h2>{modalTitle}</h2>
         {modalContent}
