@@ -121,11 +121,11 @@ const Footer = ({ t }: { t: TFunction }) => {
           >
             <NavLink to="/">
               <LogoContainer>
-                <SvgIcon
-                  src="logo.svg"
+              <SvgIcon
+                  src="BI_logo.svg"
                   aria-label="homepage"
-                  width="101px"
-                  height="64px"
+                  width="202px"
+                  height="120px"
                 />
               </LogoContainer>
             </NavLink>
